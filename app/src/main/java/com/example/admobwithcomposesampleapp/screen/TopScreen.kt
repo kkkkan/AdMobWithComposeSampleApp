@@ -11,6 +11,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.example.admobwithcomposesampleapp.Top
 import com.example.admobwithcomposesampleapp.screen.contents.BannerTabContent
+import com.example.admobwithcomposesampleapp.screen.contents.InterstitialAdTabContent
 import com.google.android.gms.ads.AdView
 
 @Composable
@@ -47,7 +48,7 @@ fun TopScreen(
             }
 
             Top.Tabs.Interstitial.tabIndex -> {
-                // TODO
+                InterstitialAdTabContent()
             }
         }
     }
