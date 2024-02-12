@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -69,7 +71,16 @@ dependencies {
 
     implementation("com.google.android.gms:play-services-ads:22.6.0")
 
-    val nav_version = "2.7.7"
+    val navVersion = "2.7.7"
 
-    implementation("androidx.navigation:navigation-compose:$nav_version")
+    implementation("androidx.navigation:navigation-compose:$navVersion")
+
+    val hiltVersion = "2.48"
+    implementation("com.google.dagger:hilt-android:$hiltVersion")
+    kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }
