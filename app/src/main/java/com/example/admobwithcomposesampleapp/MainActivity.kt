@@ -52,7 +52,7 @@ fun NavigationHost(
     // 使用するバナー広告
     // リストのスクロール量が変更して表示非表示が切り替わった場合に毎回loadAdを呼んだりしないように
     // Activityが作成された時に作って、以降はそれを使いまわす
-    banner:AdView,
+    banner: AdView,
     startDestination: String = Top.route
 ) {
     NavHost(

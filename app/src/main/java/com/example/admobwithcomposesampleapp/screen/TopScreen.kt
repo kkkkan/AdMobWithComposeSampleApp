@@ -9,7 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import com.example.admobwithcomposesampleapp.Top
 import com.example.admobwithcomposesampleapp.screen.contents.BannerTabContent
 import com.google.android.gms.ads.AdView
@@ -19,7 +18,7 @@ fun TopScreen(
     // 使用するバナー広告
     // リストのスクロール量が変更して表示非表示が切り替わった場合に毎回loadAdを呼んだりしないように
     // Activityが作成された時に作って、以降はそれを使いまわす
-    banner : AdView
+    banner: AdView
 ) {
     Column(modifier = Modifier.fillMaxSize()) {
         val selectedTab = remember {
@@ -40,7 +39,7 @@ fun TopScreen(
 
         when (selectedTab.value) {
             Top.Tabs.Banner.tabIndex -> {
-                BannerTabContent(banner =banner )
+                BannerTabContent(banner = banner)
             }
 
             Top.Tabs.Native.tabIndex -> {

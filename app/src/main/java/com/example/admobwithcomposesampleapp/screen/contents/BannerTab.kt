@@ -1,6 +1,5 @@
 package com.example.admobwithcomposesampleapp.screen.contents
 
-import android.view.Gravity
 import android.widget.FrameLayout
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -65,12 +64,12 @@ fun BannerTabContent(
                         }
                     },
                 )
-            }else{
+            } else {
                 val item = dummyItems.get(
-                    if(index>= bannerIndex){
+                    if (index >= bannerIndex) {
                         // バナー広告の分を引く
-                        index-1
-                    }else{
+                        index - 1
+                    } else {
                         index
                     }
                 )
@@ -80,7 +79,8 @@ fun BannerTabContent(
                         // 縦方向にはpaddingをつける
                         .padding(vertical = 8.dp),
                     textAlign = TextAlign.Center,
-                    text =item )
+                    text = item
+                )
             }
 
             Divider()
