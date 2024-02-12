@@ -65,14 +65,13 @@ fun BannerTabContent(
                     },
                 )
             } else {
-                val item = dummyItems.get(
-                    if (index >= bannerIndex) {
-                        // バナー広告の分を引く
-                        index - 1
-                    } else {
-                        index
-                    }
-                )
+                val listItemIndex = if (index >= bannerIndex) {
+                    // バナー広告の分を引く
+                    index - 1
+                } else {
+                    index
+                }
+                val item = dummyItems[listItemIndex]
                 Text(
                     modifier = Modifier
                         .fillMaxWidth()
