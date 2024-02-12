@@ -14,7 +14,6 @@ import com.example.admobwithcomposesampleapp.Top
 
 @Composable
 fun TopScreen() {
-    val context = LocalContext.current
     Column(modifier = Modifier.fillMaxSize()) {
 
         val selectedTab = remember {
