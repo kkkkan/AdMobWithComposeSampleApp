@@ -2,4 +2,8 @@
 <resources>
     <!--サンプル広告ユニットID-->
     <string name="admob_application_id">ca-app-pub-3940256099942544~3347511713</string>
+
+    <!--バナー広告のサンプルのユニットID-->
+    <string name="admob_banner_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+
 </resources>
