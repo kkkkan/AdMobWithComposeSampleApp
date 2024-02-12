@@ -23,11 +23,7 @@ fun BannerTabContent(
     banner: AdView
 ) {
     val dummyItems = remember {
-        arrayListOf<String>().apply {
-            for (i in 0..100) {
-                this.add("アイテム　$i")
-            }
-        }
+      makeDummyDataList()
     }
 
     // コンテンツリストのうち、バナー広告を追加したいindex
@@ -83,6 +79,18 @@ fun BannerTabContent(
             }
 
             Divider()
+        }
+    }
+}
+
+
+/**
+ * ダミーデータを作成する
+ */
+private fun makeDummyDataList(): List<String> {
+    return arrayListOf<String>().apply {
+        for (i in 0..100) {
+            this.add("アイテム　$i")
         }
     }
 }
