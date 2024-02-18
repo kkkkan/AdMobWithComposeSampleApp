@@ -2,8 +2,10 @@ package com.example.admobwithcomposesampleapp.viewmodel
 
 import android.app.Activity
 import android.content.Context
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.example.admobwithcomposesampleapp.R
+import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
@@ -22,6 +24,8 @@ import javax.inject.Inject
 class AdsViewModel @Inject constructor(
 ) : ViewModel() {
     data class UiState(
+        // 広告が表示できる状態かどうか
+        val canShowAd: Boolean = false,
         // インステ広告を表示する
         val showInterstitialAd: Boolean = false
     )
@@ -34,6 +38,10 @@ class AdsViewModel @Inject constructor(
     // インタースティシャル広告
     // プロセス再生成には対応していません。
     private var interstitialAd: InterstitialAd? = null
+        set(value) {
+            field = value
+            _uiState.value = _uiState.value.copy(canShowAd = (value != null))
+        }
 
     private var fullScreenContentCallback: FullScreenContentCallback? = null
 
