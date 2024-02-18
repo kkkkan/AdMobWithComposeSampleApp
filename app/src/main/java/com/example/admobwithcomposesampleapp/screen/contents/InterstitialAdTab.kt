@@ -15,11 +15,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.admobwithcomposesampleapp.viewmodel.AdsViewModel
+import com.example.admobwithcomposesampleapp.viewmodel.InterstitialAdViewModel
 
 @Composable
 fun InterstitialAdTabContent(
-    viewModel: AdsViewModel = hiltViewModel()
+    viewModel: InterstitialAdViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
     val state = viewModel.uiState.collectAsState()

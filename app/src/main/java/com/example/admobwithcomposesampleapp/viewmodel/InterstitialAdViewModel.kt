@@ -2,7 +2,6 @@ package com.example.admobwithcomposesampleapp.viewmodel
 
 import android.app.Activity
 import android.content.Context
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.example.admobwithcomposesampleapp.R
 import com.google.android.gms.ads.AdError
@@ -21,7 +20,7 @@ import javax.inject.Inject
  * 広告関係のViewModel
  */
 @HiltViewModel
-class AdsViewModel @Inject constructor(
+class InterstitialAdViewModel @Inject constructor(
 ) : ViewModel() {
     data class UiState(
         // 広告が表示できる状態かどうか

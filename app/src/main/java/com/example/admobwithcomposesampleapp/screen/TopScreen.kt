@@ -16,7 +16,7 @@ import com.example.admobwithcomposesampleapp.Top
 import com.example.admobwithcomposesampleapp.screen.contents.BannerTabContent
 import com.example.admobwithcomposesampleapp.screen.contents.InterstitialAdTabContent
 import com.example.admobwithcomposesampleapp.utils.LocalActivity
-import com.example.admobwithcomposesampleapp.viewmodel.AdsViewModel
+import com.example.admobwithcomposesampleapp.viewmodel.InterstitialAdViewModel
 import com.google.android.gms.ads.AdView
 
 @Composable
@@ -25,16 +25,16 @@ fun TopScreen(
     // リストのスクロール量が変更して表示非表示が切り替わった場合に毎回loadAdを呼んだりしないように
     // Activityが作成された時に作って、以降はそれを使いまわす
     banner: AdView,
-    viewModel: AdsViewModel= hiltViewModel()
+    interstitialAdViewModel: InterstitialAdViewModel= hiltViewModel()
 ) {
-    val adState = viewModel.uiState.collectAsState()
+    val adState = interstitialAdViewModel.uiState.collectAsState()
 
     val activity = LocalActivity.current
     LaunchedEffect(key1 = adState.value.showInterstitialAd){
         if(adState.value.showInterstitialAd){
             // インステ広告表示フラグがたったら、表示する
-            viewModel.openInterstitialAdIfCan(activity)
-            viewModel.consumedInterstitialAd()
+            interstitialAdViewModel.openInterstitialAdIfCan(activity)
+            interstitialAdViewModel.consumedInterstitialAd()
         }
     }
 
