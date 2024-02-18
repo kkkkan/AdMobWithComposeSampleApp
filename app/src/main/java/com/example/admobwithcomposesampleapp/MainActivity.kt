@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -14,6 +15,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.admobwithcomposesampleapp.screen.TopScreen
 import com.example.admobwithcomposesampleapp.ui.theme.AdMobWithComposeSampleAppTheme
+import com.example.admobwithcomposesampleapp.utils.LocalActivity
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
@@ -31,15 +33,18 @@ class MainActivity : ComponentActivity() {
 
 
         setContent {
-            AdMobWithComposeSampleAppTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    NavigationHost(
-                        banner = adView
-                    )
+            CompositionLocalProvider(LocalActivity provides this) {
+                // LocalActivityを取得できるようにする
+                AdMobWithComposeSampleAppTheme {
+                    // A surface container using the 'background' color from the theme
+                    Surface(
+                        modifier = Modifier.fillMaxSize(),
+                        color = MaterialTheme.colorScheme.background
+                    ) {
+                        NavigationHost(
+                            banner = adView
+                        )
+                    }
                 }
             }
         }

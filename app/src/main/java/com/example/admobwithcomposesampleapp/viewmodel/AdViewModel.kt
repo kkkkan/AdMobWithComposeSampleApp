@@ -84,7 +84,7 @@ class AdsViewModel @Inject constructor(
     /**
      * 可能なタイミングと状況なら、インタースティシャル広告を見せる。
      */
-    fun showInterstitialAdIfCan(activity: Activity) {
+    fun openInterstitialAdIfCan(activity: Activity) {
         if (interstitialAd != null) {
             // 共有直後かつインタースティシャル広告の読み込みが終わっていれば表示。
             // フラグを下したりは、interstitialAdの表示コールバックの方で行っている。
