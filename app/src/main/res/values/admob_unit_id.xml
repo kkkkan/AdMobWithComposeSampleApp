@@ -6,4 +6,7 @@
     <!--バナー広告のサンプルのユニットID-->
     <string name="admob_banner_unit_id">ca-app-pub-3940256099942544/6300978111</string>
 
+    <!--インタースティシャル広告のサンプルのユニットID-->
+    <string name="admob_interstitial_unit_id">ca-app-pub-3940256099942544/1033173712</string>
+
 </resources>
