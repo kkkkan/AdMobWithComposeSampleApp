@@ -56,6 +56,20 @@ class AdsViewModel @Inject constructor(
             // 既に読み込み済みor読み込み中だったら、何もしない
             return
         }
+
+        fullScreenContentCallback = object : FullScreenContentCallback() {
+            override fun onAdFailedToShowFullScreenContent(var1: AdError) {
+                // 表示に失敗しても、おそらく広告の再利用はできないので捨てる。
+                interstitialAd = null
+            }
+
+            override fun onAdShowedFullScreenContent() {
+                // 表示を開始
+                // 広告の再利用はできないので捨てる。
+                interstitialAd = null
+            }
+        }
+
         // 読み込み開始のフラグを立てる
         isInterstitialAdNowLoading = true
         val adRequest = AdRequest.Builder().build()
