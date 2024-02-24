@@ -13,6 +13,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.example.admobwithcomposesampleapp.R
+import com.example.admobwithcomposesampleapp.screen.contents.util.makeDummyDataList
 import com.google.android.gms.ads.nativead.NativeAdView
 
 @Composable
@@ -80,18 +81,6 @@ fun NativeAdTabContent(
             }
 
             Divider()
-        }
-    }
-}
-
-
-/**
- * ダミーデータを作成する
- */
-private fun makeDummyDataList(): List<String> {
-    return arrayListOf<String>().apply {
-        for (i in 0..100) {
-            this.add("アイテム　$i")
         }
     }
 }
