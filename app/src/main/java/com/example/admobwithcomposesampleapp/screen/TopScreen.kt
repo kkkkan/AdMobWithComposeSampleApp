@@ -1,5 +1,6 @@
 package com.example.admobwithcomposesampleapp.screen
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Tab
@@ -15,8 +16,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.admobwithcomposesampleapp.Top
 import com.example.admobwithcomposesampleapp.screen.contents.BannerTabContent
 import com.example.admobwithcomposesampleapp.screen.contents.InterstitialAdTabContent
+import com.example.admobwithcomposesampleapp.screen.contents.RewardAdTabContent
 import com.example.admobwithcomposesampleapp.utils.LocalActivity
-import com.example.admobwithcomposesampleapp.viewmodel.AdsViewModel
+import com.example.admobwithcomposesampleapp.viewmodel.InterstitialAdViewModel
+import com.example.admobwithcomposesampleapp.viewmodel.RewardAdViewModel
 import com.google.android.gms.ads.AdView
 
 @Composable
@@ -25,16 +28,28 @@ fun TopScreen(
     // リストのスクロール量が変更して表示非表示が切り替わった場合に毎回loadAdを呼んだりしないように
     // Activityが作成された時に作って、以降はそれを使いまわす
     banner: AdView,
-    viewModel: AdsViewModel= hiltViewModel()
+    interstitialAdViewModel: InterstitialAdViewModel = hiltViewModel(),
+    rewardAdViewModel: RewardAdViewModel = hiltViewModel()
 ) {
-    val adState = viewModel.uiState.collectAsState()
+    val interstitialAdState = interstitialAdViewModel.uiState.collectAsState()
+    val rewardAdState = rewardAdViewModel.uiState.collectAsState()
 
     val activity = LocalActivity.current
-    LaunchedEffect(key1 = adState.value.showInterstitialAd){
-        if(adState.value.showInterstitialAd){
+    LaunchedEffect(key1 = interstitialAdState.value.showInterstitialAd) {
+        if (interstitialAdState.value.showInterstitialAd) {
             // インステ広告表示フラグがたったら、表示する
-            viewModel.openInterstitialAdIfCan(activity)
-            viewModel.consumedInterstitialAd()
+            interstitialAdViewModel.openInterstitialAdIfCan(activity)
+            interstitialAdViewModel.consumedInterstitialAd()
+        }
+    }
+
+    LaunchedEffect(key1 = rewardAdState.value.showRewardAd) {
+        if (rewardAdState.value.showRewardAd) {
+            // リワード広告表示フラグがたったら、表示する
+            rewardAdViewModel.openRewardAdIfCan(activity){
+                Toast.makeText(activity, "リワード獲得", Toast.LENGTH_SHORT).show()
+            }
+            rewardAdViewModel.consumedRewardAd()
         }
     }
 
@@ -66,6 +81,10 @@ fun TopScreen(
 
             Top.Tabs.Interstitial.tabIndex -> {
                 InterstitialAdTabContent()
+            }
+
+            Top.Tabs.Reward.tabIndex -> {
+                RewardAdTabContent()
             }
         }
     }

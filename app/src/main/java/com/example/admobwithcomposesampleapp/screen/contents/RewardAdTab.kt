@@ -15,11 +15,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.admobwithcomposesampleapp.viewmodel.InterstitialAdViewModel
+import com.example.admobwithcomposesampleapp.viewmodel.RewardAdViewModel
 
 @Composable
-fun InterstitialAdTabContent(
-    viewModel: InterstitialAdViewModel = hiltViewModel()
+fun RewardAdTabContent(
+    viewModel: RewardAdViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
     val state = viewModel.uiState.collectAsState()
@@ -34,20 +34,20 @@ fun InterstitialAdTabContent(
                     color = Color.Red
                 )
                 .clickable {
-                    viewModel.loadInterstitialAdIfNeed(context)
+                    viewModel.loadRewardAdIfNeed(context)
                 }
                 .padding(16.dp),
             style = androidx.compose.ui.text.TextStyle(
                 color = Color.White
             ),
             textAlign = TextAlign.Center,
-            text = "インステ広告読み込み開始"
+            text = "リワード広告読み込み開始"
         )
         Spacer(modifier = Modifier.weight(1f))
 
         // 広告を表示ボタンの背景色は広告を読み込み済みかどうかで変える
         val showButtonBackgroundColor = if (state.value.canShowAd) {
-            Color.Green
+            Color.Red
         } else {
             Color.Gray
         }
@@ -62,7 +62,7 @@ fun InterstitialAdTabContent(
                 .clickable {
                     if (state.value.canShowAd) {
                         // 広告を読み込み済みだったら表示する
-                        viewModel.showInterstitialAd()
+                        viewModel.showRewardAd()
                     }
                 }
                 .padding(16.dp),
@@ -70,7 +70,7 @@ fun InterstitialAdTabContent(
                 color = Color.White
             ),
             textAlign = TextAlign.Center,
-            text = "インステ広告表示"
+            text = "リワード広告表示"
         )
         Spacer(modifier = Modifier.weight(1f))
     }

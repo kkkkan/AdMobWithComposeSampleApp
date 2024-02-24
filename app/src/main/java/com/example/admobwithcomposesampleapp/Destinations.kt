@@ -13,6 +13,7 @@ object Top : Destinations {
     ) {
         Banner("バナー", 0),
         Native("ネイティブ", 1),
-        Interstitial("インタースティシャル", 2)
+        Interstitial("インタースティシャル", 2),
+        Reward("リワード", 3)
     }
 }
