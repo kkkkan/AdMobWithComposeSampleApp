@@ -31,7 +31,7 @@ fun InterstitialAdTabContent(
                 .padding(horizontal = 16.dp)
                 .fillMaxWidth()
                 .background(
-                    color = Color.Red
+                    color = Color.Magenta
                 )
                 .clickable {
                     viewModel.loadInterstitialAdIfNeed(context)
@@ -47,7 +47,7 @@ fun InterstitialAdTabContent(
 
         // 広告を表示ボタンの背景色は広告を読み込み済みかどうかで変える
         val showButtonBackgroundColor = if (state.value.canShowAd) {
-            Color.Green
+            Color.Magenta
         } else {
             Color.Gray
         }
