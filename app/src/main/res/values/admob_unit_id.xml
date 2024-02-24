@@ -9,4 +9,7 @@
     <!--インタースティシャル広告のサンプルのユニットID-->
     <string name="admob_interstitial_unit_id">ca-app-pub-3940256099942544/1033173712</string>
 
+    <!--リワード広告のサンプルのユニットID-->
+    <string name="admob_reward_unit_id">ca-app-pub-3940256099942544/5224354917</string>
+
 </resources>
