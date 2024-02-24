@@ -12,19 +12,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import com.example.admobwithcomposesampleapp.R
 import com.example.admobwithcomposesampleapp.screen.contents.util.makeDummyDataList
-import com.google.android.gms.ads.AdSize
-import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.nativead.NativeAdView
 
 @Composable
-fun BannerTabContent(
-    // 使用するバナー広告
+fun NativeAdTabContent(
+    // 使用するネイティブ広告
     // リストのスクロール量が変更して表示非表示が切り替わった場合に毎回loadAdを呼んだりしないように
     // Activityが作成された時に作って、以降はそれを使いまわす
-    banner: AdView
+    nativeAd: NativeAdView
 ) {
     val dummyItems = remember {
-      makeDummyDataList()
+        makeDummyDataList()
     }
 
     // コンテンツリストのうち、バナー広告を追加したいindex
@@ -44,7 +44,7 @@ fun BannerTabContent(
                         // 縦方向にはpaddingをつける
                         .padding(vertical = 8.dp),
                     factory = { context ->
-                        if (banner.parent != null) {
+                        if (nativeAd.parent != null) {
                             // すでに親がいる場合は消す
                             // 直接AndroidViewのfactoryの戻りにせずFrameLayoutにくるむことで
                             // 親からリムーブ出来る。
@@ -52,12 +52,13 @@ fun BannerTabContent(
                             // Fatal Exception: java.lang.IllegalStateException
                             // The specified child already has a parent. You must call removeView() on the child's parent first.
                             // という例外が発生する)
-                            (banner.parent as FrameLayout).removeAllViews()
+                            (nativeAd.parent as FrameLayout).removeAllViews()
                         }
                         FrameLayout(context).apply {
                             // 縦の大きさを整える
-                            minimumHeight = AdSize.MEDIUM_RECTANGLE.getHeightInPixels(context)
-                            addView(banner)
+                            minimumHeight =
+                                context.resources.getDimensionPixelSize(R.dimen.native_ad_height)
+                            addView(nativeAd)
                         }
                     },
                 )
@@ -83,5 +84,3 @@ fun BannerTabContent(
         }
     }
 }
-
-
