@@ -16,11 +16,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.admobwithcomposesampleapp.Top
 import com.example.admobwithcomposesampleapp.screen.contents.BannerTabContent
 import com.example.admobwithcomposesampleapp.screen.contents.InterstitialAdTabContent
+import com.example.admobwithcomposesampleapp.screen.contents.NativeAdTabContent
 import com.example.admobwithcomposesampleapp.screen.contents.RewardAdTabContent
 import com.example.admobwithcomposesampleapp.utils.LocalActivity
 import com.example.admobwithcomposesampleapp.viewmodel.InterstitialAdViewModel
 import com.example.admobwithcomposesampleapp.viewmodel.RewardAdViewModel
 import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.nativead.NativeAdView
 
 @Composable
 fun TopScreen(
@@ -28,6 +30,7 @@ fun TopScreen(
     // リストのスクロール量が変更して表示非表示が切り替わった場合に毎回loadAdを呼んだりしないように
     // Activityが作成された時に作って、以降はそれを使いまわす
     banner: AdView,
+    nativeAdView: NativeAdView,
     interstitialAdViewModel: InterstitialAdViewModel = hiltViewModel(),
     rewardAdViewModel: RewardAdViewModel = hiltViewModel()
 ) {
@@ -76,7 +79,7 @@ fun TopScreen(
             }
 
             Top.Tabs.Native.tabIndex -> {
-                // TODO
+                NativeAdTabContent(nativeAd = nativeAdView)
             }
 
             Top.Tabs.Interstitial.tabIndex -> {

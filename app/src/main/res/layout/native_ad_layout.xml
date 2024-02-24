@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.gms.ads.nativead.NativeAdView
+        android:layout_width="match_parent"
+        android:padding="8dp"
+        android:layout_height="@dimen/native_ad_height">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!--メディア-->
+            <com.google.android.gms.ads.nativead.MediaView
+                android:id="@+id/ad_media"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--iマーク-->
+            <com.google.android.gms.ads.nativead.AdChoicesView
+                android:id="@+id/ad_choices"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <!--ヘッドライン-->
+        <TextView
+            android:id="@+id/ad_headline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ad_media" />
+
+        <!--本文-->
+        <TextView
+            android:id="@+id/ad_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ad_headline" />
+
+        <!--広告主-->
+        <TextView
+            android:id="@+id/ad_advertiser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ad_body" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.gms.ads.nativead.NativeAdView>
+
+</layout>
+
